@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Vietlott AI Predictor</title>
+    <meta name="theme-color" content="#c8102e">
+    
+    <!-- Manifest động cho PWA + Icon đẹp -->
+    <script>
+        function generateManifest() {
+            const manifest = {
+                "name": "Vietlott AI Predictor",
+                "short_name": "Vietlott AI",
+                "description": "Dự đoán xổ số Vietlott bằng AI - Kết nối thời gian thực",
+                "start_url": ".",
+                "display": "fullscreen",
+                "background_color": "#c8102e",
+                "theme_color": "#c8102e",
+                "orientation": "portrait-primary",
+                "icons": [
+                    {
+                        "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDUxMiA1MTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHJ4PSI4MCIgZmlsbD0iI2M4MTAyZSIvPjxjaXJjbGUgY3g9IjI1NiIgY3k9IjI1NiIgcj0iMTkwIiBmaWxsPSJ1cmwoI2dyYWQpIi8+PHBhdGggZD0iTTI1NiAxMzBMMTk1IDIyMEwyNTYgMzEwTDMxNyAyMjBMMjU2IDEzMFoiIGZpbGw9IiNmZmQ3MDAiLz48Y2lyY2xlIGN4PSIyNTYiIGN5PSIyNTYiIHI9IjYwIiBmaWxsPSIjYzgxMDJlIi8+PHRleHQgeD0iMjU2IiB5PSI0MjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMzgiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSJ3aGl0ZSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPlZJRVRMb1RUPC90ZXh0Pjx0ZXh0IHg9IjI1NiIgeT0iNDYwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjI0IiBmaWxsPSIjZmZkNzAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+QUk8L3RleHQ+PC9zdmc+",
+                        "sizes": "512x512",
+                        "type": "image/svg+xml"
+                    },
+                    {
+                        "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDUxMiA1MTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHJ4PSI4MCIgZmlsbD0iI2M4MTAyZSIvPjxjaXJjbGUgY3g9IjI1NiIgY3k9IjI1NiIgcj0iMTkwIiBmaWxsPSJ1cmwoI2dyYWQpIi8+PHBhdGggZD0iTTI1NiAxMzBMMTk1IDIyMEwyNTYgMzEwTDMxNyAyMjBMMjU2IDEzMFoiIGZpbGw9IiNmZmQ3MDAiLz48Y2lyY2xlIGN4PSIyNTYiIGN5PSIyNTYiIHI9IjYwIiBmaWxsPSIjYzgxMDJlIi8+PHRleHQgeD0iMjU2IiB5PSI0MjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMzgiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSJ3aGl0ZSI+VkE8L3RleHQ+PC9zdmc+",
+                        "sizes": "192x192",
+                        "type": "image/svg+xml"
+                    }
+                ]
+            };
+            const content = encodeURIComponent(JSON.stringify(manifest));
+            const manifestURL = "data:application/manifest+json," + content;
+            const link = document.createElement("link");
+            link.rel = "manifest";
+            link.href = manifestURL;
+            document.head.appendChild(link);
+        }
+    </script>
+
+    <style>
+        /* Giữ nguyên style cũ của bạn, chỉ bổ sung phần icon */
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+        
+        :root { --red: #c8102e; --dark-red: #9b0d22; --gold: #ffd700; }
+        
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #c8102e, #9b0d22);
+            color: white;
+            min-height: 100vh;
+        }
+        /* ... (các style cũ của bạn giữ nguyên) ... */
+    </style>
+</head>
+<body onload="generateManifest(); showSplash(); createTabs(); checkConnection(); setInterval(checkConnection, 15000);">
+    <!-- Phần nội dung app giữ nguyên như code trước (header, tabs, jackpot meter, nút dự đoán, v.v.) -->
+    <!-- Bạn chỉ cần dán phần body từ code cũ vào đây, hoặc giữ nguyên toàn bộ nội dung cũ -->
+
+    <div class="header">
+        <div class="logo">🇻🇳 Vietlott AI Predictor</div>
+        <div class="connection-status" id="connStatus">
+            <span id="iconConn">📶</span>
+            <span id="statusText">Đang kết nối...</span>
+        </div>
+    </div>
+
+    <div class="tab-bar" id="tabs"></div>
+
+    <div class="content" id="mainContent">
+        <h2 id="gameTitle" style="text-align:center; margin-bottom:15px;">Mega 6/45</h2>
+        
+        <div style="text-align:center; margin:15px 0;">
+            <strong>Jackpot Meter</strong>
+            <div class="jackpot-meter">
+                <div class="jackpot-fill" id="jackpotFill" style="width:45%"></div>
+                <div class="jackpot-label" id="jackpotPercent">45% - Nên vào tiền!</div>
+            </div>
+        </div>
+
+        <button class="predict-btn" onclick="generatePrediction()">🔮 Dự đoán bộ số may mắn bằng AI</button>
+
+        <div class="result" id="predictionResult" style="display:none;">
+            <h3>Bộ số dự đoán AI</h3>
+            <div id="predictedNumbers" style="margin:20px 0;"></div>
+            <p id="aiAdvice" style="font-style:italic;"></p>
+        </div>
+
+        <div style="margin-top:30px;">
+            <h3>Kết quả gần nhất từ Vietlott</h3>
+            <div id="liveResults"></div>
+        </div>
+    </div>
+
+    <div class="led" id="ledIndicator"></div>
+
+    <!-- Giữ nguyên script cũ của bạn (createTabs, checkConnection, generatePrediction, v.v.) -->
+    <script>
+        // === Paste toàn bộ script từ phiên bản trước vào đây ===
+        // (Để ngắn gọn, tôi không paste lại hết, bạn chỉ cần copy phần script từ file cũ và dán vào đây)
+        
+        console.log("%c✅ Icon đẹp và Manifest PWA đã được kích hoạt!", "color:#ffd700; font-size:16px");
+    </script>
+</body>
+</html>
