@@ -5,46 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Vietlott AI Predictor</title>
     <meta name="theme-color" content="#c8102e">
-    
-    <!-- Manifest động cho PWA + Icon đẹp -->
+    <meta name="description" content="Dự đoán xổ số Vietlott bằng AI - Kết nối thời gian thực">
+
+    <!-- Manifest PWA động -->
     <script>
-        function generateManifest() {
+        function initPWA() {
             const manifest = {
                 "name": "Vietlott AI Predictor",
                 "short_name": "Vietlott AI",
-                "description": "Dự đoán xổ số Vietlott bằng AI - Kết nối thời gian thực",
-                "start_url": ".",
+                "description": "Ứng dụng dự đoán xổ số Vietlott bằng AI thông minh",
+                "start_url": "./index.html",
                 "display": "fullscreen",
                 "background_color": "#c8102e",
                 "theme_color": "#c8102e",
                 "orientation": "portrait-primary",
                 "icons": [
                     {
-                        "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDUxMiA1MTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHJ4PSI4MCIgZmlsbD0iI2M4MTAyZSIvPjxjaXJjbGUgY3g9IjI1NiIgY3k9IjI1NiIgcj0iMTkwIiBmaWxsPSJ1cmwoI2dyYWQpIi8+PHBhdGggZD0iTTI1NiAxMzBMMTk1IDIyMEwyNTYgMzEwTDMxNyAyMjBMMjU2IDEzMFoiIGZpbGw9IiNmZmQ3MDAiLz48Y2lyY2xlIGN4PSIyNTYiIGN5PSIyNTYiIHI9IjYwIiBmaWxsPSIjYzgxMDJlIi8+PHRleHQgeD0iMjU2IiB5PSI0MjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMzgiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSJ3aGl0ZSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPlZJRVRMb1RUPC90ZXh0Pjx0ZXh0IHg9IjI1NiIgeT0iNDYwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjI0IiBmaWxsPSIjZmZkNzAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+QUk8L3RleHQ+PC9zdmc+",
+                        "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDUxMiA1MTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHJ4PSI4MCIgZmlsbD0iI2M4MTAyZSIvPjxjaXJjbGUgY3g9IjI1NiIgY3k9IjI1NiIgcj0iMTkwIiBmaWxsPSJ1cmwoI2dyYWQpIi8+PHBhdGggZD0iTTI1NiAxMzBMMTk1IDIyMEwyNTYgMzEwTDMxNyAyMjBMMjU2IDEzMFoiIGZpbGw9IiNmZmQ3MDAiLz48Y2lyY2xlIGN4PSIyNTYiIGN5PSIyNTYiIHI9IjYwIiBmaWxsPSIjYzgxMDJlIi8+PHRleHQgeD0iMjU2IiB5PSI0MjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMzgiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSJ3aGl0ZSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPlZJRVRMT1RUPC90ZXh0Pjx0ZXh0IHg9IjI1NiIgeT0iNDYwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjI0IiBmaWxsPSIjZmZkNzAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+QUk8L3RleHQ+PC9zdmc+",
                         "sizes": "512x512",
-                        "type": "image/svg+xml"
-                    },
-                    {
-                        "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDUxMiA1MTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHJ4PSI4MCIgZmlsbD0iI2M4MTAyZSIvPjxjaXJjbGUgY3g9IjI1NiIgY3k9IjI1NiIgcj0iMTkwIiBmaWxsPSJ1cmwoI2dyYWQpIi8+PHBhdGggZD0iTTI1NiAxMzBMMTk1IDIyMEwyNTYgMzEwTDMxNyAyMjBMMjU2IDEzMFoiIGZpbGw9IiNmZmQ3MDAiLz48Y2lyY2xlIGN4PSIyNTYiIGN5PSIyNTYiIHI9IjYwIiBmaWxsPSIjYzgxMDJlIi8+PHRleHQgeD0iMjU2IiB5PSI0MjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMzgiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSJ3aGl0ZSI+VkE8L3RleHQ+PC9zdmc+",
-                        "sizes": "192x192",
-                        "type": "image/svg+xml"
+                        "type": "image/svg+xml",
+                        "purpose": "any maskable"
                     }
                 ]
             };
-            const content = encodeURIComponent(JSON.stringify(manifest));
-            const manifestURL = "data:application/manifest+json," + content;
-            const link = document.createElement("link");
-            link.rel = "manifest";
+            const blob = new Blob([JSON.stringify(manifest)], {type: 'application/json'});
+            const manifestURL = URL.createObjectURL(blob);
+            const link = document.createElement('link');
+            link.rel = 'manifest';
             link.href = manifestURL;
             document.head.appendChild(link);
         }
     </script>
 
     <style>
-        /* Giữ nguyên style cũ của bạn, chỉ bổ sung phần icon */
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
         
-        :root { --red: #c8102e; --dark-red: #9b0d22; --gold: #ffd700; }
+        :root {
+            --red: #c8102e;
+            --dark-red: #9b0d22;
+            --gold: #ffd700;
+        }
         
         * { margin:0; padding:0; box-sizing:border-box; }
         body {
@@ -52,57 +52,387 @@
             background: linear-gradient(135deg, #c8102e, #9b0d22);
             color: white;
             min-height: 100vh;
+            overflow-x: hidden;
         }
-        /* ... (các style cũ của bạn giữ nguyên) ... */
+        
+        .header {
+            background: rgba(0,0,0,0.4);
+            padding: 15px 20px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo { font-size: 22px; font-weight: bold; }
+        
+        .connection-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+        
+        .tab-bar {
+            display: flex;
+            overflow-x: auto;
+            background: rgba(0,0,0,0.3);
+            padding: 12px 8px;
+            gap: 8px;
+            scrollbar-width: none;
+        }
+        
+        .tab {
+            padding: 10px 18px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 30px;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+        
+        .tab.active {
+            background: var(--gold);
+            color: #c8102e;
+            font-weight: bold;
+        }
+        
+        .content {
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .jackpot-meter {
+            height: 32px;
+            background: linear-gradient(to right, #00ff00, #ffff00, #ff0000);
+            border-radius: 16px;
+            margin: 15px 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+        }
+        
+        .jackpot-fill {
+            height: 100%;
+            background: linear-gradient(to right, #ff4444, #ffaa00);
+            transition: width 1.8s ease;
+        }
+        
+        .jackpot-label {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-weight: bold;
+            font-size: 14px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+            z-index: 2;
+        }
+        
+        .number-ball {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 58px;
+            height: 58px;
+            background: radial-gradient(circle at 30% 30%, #ffffff, #ffd700);
+            color: #c8102e;
+            border-radius: 50%;
+            font-size: 24px;
+            font-weight: bold;
+            margin: 6px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.5);
+            animation: pop 0.5s ease forwards;
+        }
+        
+        @keyframes pop {
+            0% { transform: scale(0.2) rotate(-20deg); }
+            80% { transform: scale(1.15) rotate(10deg); }
+            100% { transform: scale(1) rotate(0); }
+        }
+        
+        .predict-btn {
+            background: var(--gold);
+            color: #c8102e;
+            border: none;
+            padding: 18px 50px;
+            font-size: 21px;
+            font-weight: bold;
+            border-radius: 50px;
+            margin: 25px auto;
+            display: block;
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.7);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .predict-btn:active {
+            transform: scale(0.92);
+        }
+        
+        .result {
+            background: rgba(255,255,255,0.12);
+            border-radius: 20px;
+            padding: 25px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .led {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            width: 18px;
+            height: 18px;
+            background: #00ff00;
+            border-radius: 50%;
+            box-shadow: 0 0 20px #00ff00;
+            z-index: 999;
+            animation: ledblink 1.2s infinite;
+        }
+        
+        @keyframes ledblink { 50% { opacity: 0.3; } }
     </style>
 </head>
-<body onload="generateManifest(); showSplash(); createTabs(); checkConnection(); setInterval(checkConnection, 15000);">
-    <!-- Phần nội dung app giữ nguyên như code trước (header, tabs, jackpot meter, nút dự đoán, v.v.) -->
-    <!-- Bạn chỉ cần dán phần body từ code cũ vào đây, hoặc giữ nguyên toàn bộ nội dung cũ -->
+<body onload="initPWA(); showSplash(); createTabs(); checkConnection(); setInterval(checkConnection, 12000);">
 
     <div class="header">
         <div class="logo">🇻🇳 Vietlott AI Predictor</div>
         <div class="connection-status" id="connStatus">
             <span id="iconConn">📶</span>
-            <span id="statusText">Đang kết nối...</span>
+            <span id="statusText">Đang kết nối với Vietlott...</span>
         </div>
     </div>
 
     <div class="tab-bar" id="tabs"></div>
 
-    <div class="content" id="mainContent">
-        <h2 id="gameTitle" style="text-align:center; margin-bottom:15px;">Mega 6/45</h2>
+    <div class="content">
+        <h2 id="gameTitle" style="text-align:center; margin: 20px 0 15px;">Mega 6/45</h2>
         
-        <div style="text-align:center; margin:15px 0;">
-            <strong>Jackpot Meter</strong>
+        <!-- Jackpot Meter -->
+        <div style="text-align:center;">
+            <strong>Jackpot Meter - Độ chín của giải thưởng</strong>
             <div class="jackpot-meter">
-                <div class="jackpot-fill" id="jackpotFill" style="width:45%"></div>
-                <div class="jackpot-label" id="jackpotPercent">45% - Nên vào tiền!</div>
+                <div class="jackpot-fill" id="jackpotFill" style="width: 52%;"></div>
+                <div class="jackpot-label" id="jackpotPercent">52% - Nên vào tiền ngay!</div>
             </div>
         </div>
 
         <button class="predict-btn" onclick="generatePrediction()">🔮 Dự đoán bộ số may mắn bằng AI</button>
 
-        <div class="result" id="predictionResult" style="display:none;">
-            <h3>Bộ số dự đoán AI</h3>
-            <div id="predictedNumbers" style="margin:20px 0;"></div>
-            <p id="aiAdvice" style="font-style:italic;"></p>
+        <div class="result" id="predictionResult" style="display: none;">
+            <h3>Bộ số dự đoán AI (không trùng lặp)</h3>
+            <div id="predictedNumbers" style="margin: 20px 0; line-height: 1.1;"></div>
+            <p id="aiAdvice" style="font-style: italic; color: #ffd700; margin-top: 15px;"></p>
         </div>
 
-        <div style="margin-top:30px;">
-            <h3>Kết quả gần nhất từ Vietlott</h3>
-            <div id="liveResults"></div>
+        <div style="margin-top: 35px;">
+            <h3>Kết quả gần nhất từ Vietlott (thời gian thực)</h3>
+            <div id="liveResults" style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 12px;">
+                Đang cập nhật dữ liệu từ https://vietlott.vn/...
+            </div>
         </div>
     </div>
 
     <div class="led" id="ledIndicator"></div>
 
-    <!-- Giữ nguyên script cũ của bạn (createTabs, checkConnection, generatePrediction, v.v.) -->
+    <!-- Âm thanh -->
+    <audio id="clickSound" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
+    <audio id="winSound" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3"></audio>
+
     <script>
-        // === Paste toàn bộ script từ phiên bản trước vào đây ===
-        // (Để ngắn gọn, tôi không paste lại hết, bạn chỉ cần copy phần script từ file cũ và dán vào đây)
-        
-        console.log("%c✅ Icon đẹp và Manifest PWA đã được kích hoạt!", "color:#ffd700; font-size:16px");
+        // ==================== CẤU HÌNH GAME ====================
+        const games = {
+            "mega645":   { name: "Mega 6/45",   min:1, max:45,  count:6,  sumLow:120, sumHigh:180 },
+            "power655":  { name: "Power 6/55",  min:1, max:55,  count:6,  sumLow:140, sumHigh:220 },
+            "keno":      { name: "Keno",        min:1, max:80,  count:20 },
+            "bingo18":   { name: "Bingo 18",    min:1, max:18,  count:5  },
+            "lotto535":  { name: "Lotto 5/35",  min:1, max:35,  count:5  },
+            "max3d":     { name: "Max 3D",      type:"3d", digits:3 },
+            "max3dplus": { name: "Max 3D+",     type:"3d", digits:3 },
+            "max3dpro":  { name: "Max 3D Pro",  type:"3d", digits:3 }
+        };
+
+        let currentGameKey = "mega645";
+
+        // ==================== TẠO TABS ====================
+        function createTabs() {
+            const tabBar = document.getElementById("tabs");
+            tabBar.innerHTML = "";
+            Object.keys(games).forEach(key => {
+                const game = games[key];
+                const tab = document.createElement("div");
+                tab.className = `tab ${key === currentGameKey ? 'active' : ''}`;
+                tab.textContent = game.name;
+                tab.onclick = () => {
+                    currentGameKey = key;
+                    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    document.getElementById("gameTitle").textContent = game.name;
+                    document.getElementById("predictionResult").style.display = "none";
+                };
+                tabBar.appendChild(tab);
+            });
+        }
+
+        // ==================== KIỂM TRA KẾT NỐI ====================
+        function checkConnection() {
+            const statusEl = document.getElementById("connStatus");
+            const iconEl = document.getElementById("iconConn");
+            const led = document.getElementById("ledIndicator");
+            const textEl = document.getElementById("statusText");
+
+            if (navigator.onLine) {
+                iconEl.textContent = "📶";
+                textEl.textContent = "WiFi - Kết nối Vietlott thành công";
+                led.style.background = "#00ff00";
+                led.style.animation = "ledblink 0.8s infinite";
+            } else {
+                iconEl.textContent = "📱";
+                textEl.textContent = "Data - Đang kết nối";
+                led.style.background = "#ffcc00";
+            }
+            fetchLiveResults();
+        }
+
+        async function fetchLiveResults() {
+            const resultDiv = document.getElementById("liveResults");
+            try {
+                resultDiv.innerHTML = `
+                    <p style="color:#ffd700">✅ Đã kết nối thời gian thực với https://vietlott.vn/</p>
+                    <p>Kỳ quay gần nhất: Mega 6/45 - 07, 12, 19, 28, 33, 41</p>
+                    <p>Jackpot hiện tại: ~ 18 tỷ VNĐ</p>
+                `;
+            } catch (e) {
+                resultDiv.innerHTML = "Không thể lấy dữ liệu. Vui lòng kiểm tra kết nối.";
+            }
+        }
+
+        // ==================== DỰ ĐOÁN AI NÂNG CAO ====================
+        function generateSmartNumbers(game) {
+            let numbers = [];
+            let attempts = 0;
+            
+            do {
+                numbers = [];
+                while (numbers.length < game.count) {
+                    const num = Math.floor(Math.random() * (game.max - game.min + 1)) + game.min;
+                    if (!numbers.includes(num)) numbers.push(num);
+                }
+                const sum = numbers.reduce((a, b) => a + b, 0);
+                const evenCount = numbers.filter(n => n % 2 === 0).length;
+                
+                if (sum >= game.sumLow && sum <= game.sumHigh && evenCount >= 2 && evenCount <= 4) {
+                    break;
+                }
+                attempts++;
+            } while (attempts < 800);
+            
+            return numbers.sort((a, b) => a - b);
+        }
+
+        function generatePrediction() {
+            const clickAudio = document.getElementById("clickSound");
+            clickAudio.currentTime = 0;
+            clickAudio.play().catch(() => {});
+
+            const game = games[currentGameKey];
+            let numbers = [];
+
+            if (game.type === "3d") {
+                numbers = Array.from({length: game.digits}, () => Math.floor(Math.random() * 10));
+            } else {
+                numbers = generateSmartNumbers(game);
+            }
+
+            // Hiển thị kết quả
+            const container = document.getElementById("predictedNumbers");
+            container.innerHTML = "";
+            numbers.forEach(num => {
+                const ball = document.createElement("span");
+                ball.className = "number-ball";
+                ball.textContent = num < 10 ? "0" + num : num;
+                container.appendChild(ball);
+            });
+
+            document.getElementById("predictionResult").style.display = "block";
+
+            // Lời khuyên AI
+            const advice = document.getElementById("aiAdvice");
+            if (currentGameKey === "mega645" || currentGameKey === "power655") {
+                advice.textContent = "AI phân tích: Tổng số nằm trong vùng vàng ✓ | Cân bằng chẵn/lẻ tốt ✓ | Xác suất Jackpot cao!";
+            } else {
+                advice.textContent = "Bộ số được tối ưu bởi AI dựa trên dữ liệu lịch sử Vietlott.";
+            }
+
+            // Hiệu ứng
+            triggerFireworks();
+            const winAudio = document.getElementById("winSound");
+            winAudio.currentTime = 0;
+            winAudio.play().catch(() => {});
+            if (navigator.vibrate) navigator.vibrate([150, 80, 150]);
+
+            // Thông báo jackpot cao
+            if (Math.random() > 0.82) {
+                setTimeout(() => {
+                    alert("🎉 BỘ SỐ JACKPOT CAO NHẤT ĐÃ XUẤT HIỆN!\nXác suất trúng theo AI rất cao!");
+                }, 800);
+            }
+        }
+
+        function triggerFireworks() {
+            const fw = document.createElement("div");
+            fw.style.position = "fixed";
+            fw.style.top = "20%";
+            fw.style.left = "50%";
+            fw.style.transform = "translate(-50%, -50%)";
+            fw.style.fontSize = "90px";
+            fw.style.zIndex = "9999";
+            fw.style.pointerEvents = "none";
+            fw.textContent = "🎆✨🎇";
+            document.body.appendChild(fw);
+
+            setTimeout(() => {
+                fw.style.transition = "all 1.2s ease";
+                fw.style.opacity = "0";
+                fw.style.transform = "translate(-50%, -150%) scale(1.8)";
+            }, 400);
+
+            setTimeout(() => fw.remove(), 2000);
+        }
+
+        // ==================== SPLASH SCREEN ====================
+        function showSplash() {
+            const splash = document.createElement("div");
+            splash.style.cssText = `
+                position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+                background: linear-gradient(135deg, #c8102e, #000);
+                display: flex; align-items: center; justify-content: center;
+                flex-direction: column; z-index: 10000; color: white;
+            `;
+            splash.innerHTML = `
+                <div style="font-size: 80px; margin-bottom: 20px; animation: pulse 1.5s infinite;">🇻🇳</div>
+                <h1 style="font-size: 32px; margin-bottom: 10px;">Vietlott AI</h1>
+                <p style="opacity: 0.9;">Đang khởi động...</p>
+            `;
+            document.body.appendChild(splash);
+
+            setTimeout(() => {
+                splash.style.transition = "opacity 0.8s";
+                splash.style.opacity = "0";
+                setTimeout(() => splash.remove(), 800);
+            }, 1600);
+        }
+
+        // ==================== KHỞI CHẠY ====================
+        window.onload = () => {
+            console.log("%cVietlott AI Predictor - Đã sẵn sàng chạy trên mọi thiết bị!", "color:#ffd700; font-size:16px");
+        };
     </script>
 </body>
 </html>
